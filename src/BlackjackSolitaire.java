@@ -5,6 +5,16 @@ public class BlackjackSolitaire {
     private int filledScoreSpots;
     private int usedDiscards;
 
+    // create Blackjack solitaire game
+    public BlackjackSolitaire() {
+        deck = new Deck();
+        deck.shuffle();
+        // create board with 4 rows and 5 column, and setup score spot and discard
+        board = new Card[4][5];
+        filledScoreSpots = 0;
+        usedDiscards = 0;
+
+    }
     // display game board
     public void displayBoard() {
         for (int i = 0; i < board.length; i++) {
@@ -34,28 +44,30 @@ public class BlackjackSolitaire {
         }
     }
 
-    // create Blackjack solitaire game
-    public BlackjackSolitaire() {
-        deck = new Deck();
-        deck.shuffle();
-    // create board with 4 rows and 5 column, and setup score spot and discard
-        board = new Card[4][5];
-        filledScoreSpots = 0;
-        usedDiscards = 0;
-
-    }
-
-
-
+    // start game
     public void play(){
-    // read user input and check which discard spot is used.
+        // read user input and check which discard spot is used.
         Scanner input = new Scanner(System.in);
-        boolean[] usedDiscards = new boolean[4];
+        boolean[] discardSpots = new boolean[4];
 
-        // use loop until all score spot are filled
+        // repeat loop until all score spot are filled
         while (filledScoreSpots < 16) {
             Card card = deck.drawCard();
+            displayBoard();
+            System.out.println("Current card: " + card.getCardName());
 
+        // ask user to choose spot for current card
+            System.out.print("Choose a spot (1-20): ");
+            int spot = input.nextInt();
+
+        // check if spot in the range
+            while (spot < 1 || spot > 20) {
+                System.out.println("Invalid spot and try again.");
+
+                System.out.print("Choose a spot (1-20): ");
+                spot = input.nextInt();
+            }
+        break;
         }
 
     }
