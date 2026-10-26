@@ -16,4 +16,18 @@ public class Deck {
             }
         }
     }
+
+    // shuffle cards
+    public void shuffle() {
+        // multiply i+1 to get a random index from 0 to i
+        for (int i = cards.length -1; i > 0; i --) {
+            int j = (int) (Math.random() * (i+1));
+
+            Card temp = cards[i];
+            cards [i] = cards[j];
+            cards[j] = temp;
+
+        }
+        nextCard = 0;
+    }
 }
