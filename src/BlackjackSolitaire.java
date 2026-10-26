@@ -56,19 +56,61 @@ public class BlackjackSolitaire {
             displayBoard();
             System.out.println("Current card: " + card.getCardName());
 
-        // ask user to choose spot for current card
-            System.out.print("Choose a spot (1-20): ");
-            int spot = input.nextInt();
+            boolean cardHandled = false;
+            while (!cardHandled) {
 
-        // check if spot in the range
-            while (spot < 1 || spot > 20) {
-                System.out.println("Invalid spot and try again.");
-
+                // ask user to choose spot for current card
                 System.out.print("Choose a spot (1-20): ");
-                spot = input.nextInt();
-            }
-        break;
-        }
+                int spot = input.nextInt();
 
+                // check if spot in the range
+                while (spot < 1 || spot > 20) {
+                    System.out.println("Invalid spot and try again.");
+
+                    System.out.print("Choose a spot (1-20): ");
+                    spot = input.nextInt();
+                }
+
+                // check if it is scoring spot and find row and column
+                if (spot >= 1 && spot <= 16) {
+                    int row;
+                    int column;
+
+                    if (spot <= 10) {
+                        row = (spot -1) / 5;
+                        column = (spot -1) % 5;
+                    } else if (spot <= 13) {
+                        row = 2;
+                        column = spot - 10;
+                    } else {
+                        row = 3;
+                        column = spot -13;
+                    }
+
+                    if (board[row][column] == null) {
+                        board[row][column] = card;
+                        filledScoreSpots++;
+                        cardHandled = true;
+                    } else {
+                        System.out.println("Spot already filled.");
+                    }
+
+                } else {
+                    // check if discard spot is used
+                    int index = spot -17;
+                    if (discardSpots[index]) {
+                        System.out.println("Discard spot is used.");
+                    } else {
+                        discardSpots[index] = true;
+                        usedDiscards++;
+                        cardHandled = true;
+                    }
+                }
+
+            }
+        }
+    // display complete game board
+    displayBoard();
+    System.out.println("Completed game.");
     }
 }
