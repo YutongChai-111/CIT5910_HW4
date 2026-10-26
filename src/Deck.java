@@ -22,12 +22,23 @@ public class Deck {
         // multiply i+1 to get a random index from 0 to i
         for (int i = cards.length -1; i > 0; i --) {
             int j = (int) (Math.random() * (i+1));
-
+        // swap cards at index i and index j
             Card temp = cards[i];
             cards [i] = cards[j];
             cards[j] = temp;
 
         }
         nextCard = 0;
+    }
+
+    // draw next card from deck and return it
+    public Card drawcard() {
+        if (nextCard < cards.length) {
+    // get next card from array and move next position for draw.
+            Card card = cards[nextCard];
+            nextCard ++;
+            return card;
+        }
+        return null;
     }
 }
