@@ -8,7 +8,7 @@ public class DeckTest {
 
         // draw 5 cards to test
         for (int i = 0; i < 5; i++) {
-            Card card = deck.drawcard();
+            Card card = deck.drawCard();
             System.out.println(card.getCardName());
         }
     }

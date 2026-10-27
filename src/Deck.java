@@ -4,6 +4,7 @@ public class Deck {
 
     // create deck of cards (52)
     public Deck() {
+        // create an array to store 52 cards
         cards = new Card[52];
         nextCard = 0;
         String[] rank = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
@@ -32,7 +33,7 @@ public class Deck {
     }
 
     // draw next card from deck and return it
-    public Card drawcard() {
+    public Card drawCard() {
         if (nextCard < cards.length) {
     // get next card from array and move next position for draw.
             Card card = cards[nextCard];
